@@ -21,4 +21,7 @@ public interface BoardService {
 
     // 게시물 삭제
     void deleteBoardById(Long id);
+
+    // 조회수 로직
+    void hitBoard(Board board);
 }

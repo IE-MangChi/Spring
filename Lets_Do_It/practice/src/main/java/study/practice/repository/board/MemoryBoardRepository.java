@@ -41,4 +41,9 @@ public class MemoryBoardRepository implements BoardRepository{
     public void delete(Long id) {
         store.remove(id);
     }
+
+    @Override
+    public void hitBoard(Board board) {
+        board.setHit(board.getHit() + 1L);
+    }
 }

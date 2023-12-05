@@ -39,4 +39,9 @@ public class BoardServiceImpl implements BoardService{
     public void deleteBoardById(Long id) {
         repository.delete(id);
     }
+
+    @Override
+    public void hitBoard(Board board) {
+        repository.hitBoard(board);
+    }
 }

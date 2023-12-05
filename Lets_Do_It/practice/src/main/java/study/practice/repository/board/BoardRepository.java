@@ -17,4 +17,6 @@ public interface BoardRepository {
     List<Board> findAll();
     // 게시물 삭제
     void delete(Long id);
+    // 조회수 로직
+    void hitBoard(Board board);
 }
