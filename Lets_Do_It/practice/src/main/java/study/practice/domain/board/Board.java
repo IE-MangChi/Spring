@@ -1,4 +1,4 @@
-package study.practice.domain;
+package study.practice.domain.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
