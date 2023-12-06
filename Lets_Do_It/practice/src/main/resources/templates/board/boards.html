@@ -6,9 +6,24 @@
           href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div style="text-align: right">
-    <span><a href="member/loginForm.html" th:href="@{/login}">로그인</a></span>
-    <span><a href="member/addForm.html" th:href="@{/member/add}">회원가입</a></span>
+<div style="text-align: center">
+    <div th:if="${session['loginMember'] == null}">
+        <button onclick="location.href='login/loginForm.html'"
+                th:onclick="|location.href='@{/login}'|"
+                type="button">로그인</button>
+        <button onclick="location.href='member/addForm.html'"
+                th:onclick="|location.href='@{/member/add}'|"
+                type="button">회원가입</button>
+    </div>
+
+    <div th:if="${session['loginMember'] != null}">
+        <button onclick="location.href='member/member.html'"
+                th:onclick="|location.href='@{/member/profile}'|"
+                type="button">내정보</button>
+        <button onclick="location.href='member/addForm.html'"
+                th:onclick="|location.href='@{/logout}'|" th:method="post"
+                type="submit">로그아웃</button>
+    </div>
 </div>
 
 

@@ -7,6 +7,7 @@ import study.practice.repository.board.BoardRepository;
 import study.practice.repository.board.MemoryBoardRepository;
 import study.practice.repository.member.MemberRepository;
 import study.practice.service.board.BoardServiceImpl;
+import study.practice.service.login.LoginService;
 import study.practice.service.member.MemberService;
 
 @Configuration
@@ -28,6 +29,10 @@ public class BoardConfig {
     @Bean
     MemberService memberService() {
         return new MemberService(memberRepository());
+    }
+    @Bean
+    LoginService loginService() {
+        return new LoginService(memberRepository());
     }
 
     @Bean
