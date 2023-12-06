@@ -9,7 +9,7 @@ public class Board {
 
     private String title; // 글 제목
     private String content; // 글 내용
-    private String writer; // 작성자
+    private String writer; // 작성자 아이디
     private Long hit; // 조회수
 
     public Board(String title, String content, String writer) {
