@@ -6,13 +6,17 @@
           href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div style="text-align: right">
+    <span><a href="member/loginForm.html" th:href="@{/login}">로그인</a></span>
+    <span><a href="member/addForm.html" th:href="@{/member/add}">회원가입</a></span>
+</div>
+
 
 <div class="container" style="max-width: 600px">
     <div class="py-5 text-center">
         <h2>게시판 목록</h2>
     </div>
 
-    <hr class="my-4">
     <div>
         <table class="table">
             <thead>
