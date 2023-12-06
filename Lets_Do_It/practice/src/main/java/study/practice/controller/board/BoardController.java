@@ -1,5 +1,7 @@
 package study.practice.controller.board;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import study.practice.domain.board.Board;
+import study.practice.domain.member.Member;
 import study.practice.repository.board.BoardUpdateDto;
 import study.practice.service.board.BoardServiceImpl;
 
@@ -43,12 +46,17 @@ public class BoardController {
     }
 
     @PostMapping("/add")
-    public String createBoard(@ModelAttribute BoardUpdateDto createParam, Model model) {
-        String writer = "임시 작성자"; // 향후 세션에서 받아올 예정
+    public String createBoard(@ModelAttribute BoardUpdateDto createParam,
+                              HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        if (session == null | session.getAttribute("loginMember") == null) {
+            return "redirect:/";
+        }
+        Member loginMember = (Member)session.getAttribute("loginMember");
         Board board = new Board(
                 createParam.getTitle(),
                 createParam.getContent(),
-                writer
+                loginMember.getLoginId()
         );
         boardService.createBoard(board);
         model.addAttribute("board", board);
