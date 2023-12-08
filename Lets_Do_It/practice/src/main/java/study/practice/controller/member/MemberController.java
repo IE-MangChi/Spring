@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,14 @@ public class MemberController {
 
     @PostMapping("/add")
     public String saveMember(@Validated @ModelAttribute("member") Member member,
-                             BindingResult bindingResult) {
+                             BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            return "member/addForm";
+        }
+
+        Optional<Member> loginMember = memberService.findByLoginId(member.getLoginId());
+        if (loginMember.isPresent()) {
+            model.addAttribute("registerError", "이미 등록된 사용자입니다.");
             return "member/addForm";
         }
 

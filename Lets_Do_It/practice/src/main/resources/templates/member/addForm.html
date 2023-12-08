@@ -27,6 +27,7 @@
                    th:errorclass="field-error"
                    class="form-control">
             <div class="field-error" th:errors="*{loginId}">에러</div>
+            <div class="field-error" th:if="${registerError}" th:text="${registerError}">에러</div>
         </div>
         <div>
             <label for="name">이름</label>
