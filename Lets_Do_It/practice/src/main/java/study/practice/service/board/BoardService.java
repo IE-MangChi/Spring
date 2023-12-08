@@ -3,7 +3,7 @@ package study.practice.service.board;
 import java.util.List;
 import java.util.Optional;
 import study.practice.domain.board.Board;
-import study.practice.repository.board.BoardUpdateDto;
+import study.practice.controller.board.BoardUpdateDto;
 
 public interface BoardService {
 

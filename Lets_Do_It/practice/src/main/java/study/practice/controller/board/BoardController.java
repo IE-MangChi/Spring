@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import study.practice.domain.board.Board;
 import study.practice.domain.member.Member;
-import study.practice.repository.board.BoardUpdateDto;
 import study.practice.service.board.BoardServiceImpl;
 
 @Slf4j
@@ -41,17 +42,24 @@ public class BoardController {
     }
 
     @GetMapping("/add")
-    public String addBoard() {
+    public String addBoard(@ModelAttribute("post") BoardUpdateDto createParam) {
         return "board/addBoard";
     }
 
     @PostMapping("/add")
-    public String createBoard(@ModelAttribute BoardUpdateDto createParam,
+    public String createBoard(@Validated @ModelAttribute("post") BoardUpdateDto createParam,
+                              BindingResult bindingResult,
                               HttpServletRequest request, Model model) {
+
         HttpSession session = request.getSession(false);
         if (session == null | session.getAttribute("loginMember") == null) {
             return "redirect:/";
         }
+
+        if (bindingResult.hasErrors()) {
+            return "board/addBoard";
+        }
+
         Member loginMember = (Member)session.getAttribute("loginMember");
         Board board = new Board(
                 createParam.getTitle(),

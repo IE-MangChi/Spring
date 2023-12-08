@@ -1,5 +1,6 @@
 package study.practice.domain.board;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import study.practice.controller.board.BoardUpdateDto;
 import study.practice.domain.board.Board;
 
 public class MemoryBoardRepository implements BoardRepository{

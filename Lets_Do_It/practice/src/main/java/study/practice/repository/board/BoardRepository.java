@@ -3,6 +3,7 @@ package study.practice.repository.board;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Repository;
+import study.practice.controller.board.BoardUpdateDto;
 import study.practice.domain.board.Board;
 
 @Repository

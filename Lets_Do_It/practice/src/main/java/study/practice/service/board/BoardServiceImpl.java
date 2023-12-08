@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import study.practice.domain.board.Board;
 import study.practice.repository.board.BoardRepository;
-import study.practice.repository.board.BoardUpdateDto;
+import study.practice.controller.board.BoardUpdateDto;
 
 @Service
 @RequiredArgsConstructor
