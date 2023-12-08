@@ -20,18 +20,27 @@
         <h2>회원 가입</h2>
     </div>
     <h4 class="mb-3">회원 정보 입력</h4>
-    <form action="" method="post">
+    <form action="" method="post" th:object="${member}">
         <div>
             <label for="loginId">로그인 ID</label>
-            <input type="text" id="loginId" name="loginId" class="form-control">
+            <input type="text" id="loginId" th:field="*{loginId}"
+                   th:class="${errors?.containsKey('loginId')} ? 'form-control field-error' : 'form-control'"
+                   class="form-control">
+            <div class="field-error" th:if="${errors?.containsKey('loginId')}" th:text="${errors['loginId']}">에러</div>
         </div>
         <div>
             <label for="name">이름</label>
-            <input type="text" id="name" name="name" class="form-control">
+            <input type="text" id="name" th:field="*{name}"
+                   th:class="${errors?.containsKey('name')} ? 'form-control field-error' : 'form-control'"
+                   class="form-control">
+            <div class="field-error" th:if="${errors?.containsKey('name')}" th:text="${errors['name']}">에러</div>
         </div>
         <div>
             <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" class="form-control">
+            <input type="password" id="password" name="password"
+                   th:class="${errors?.containsKey('password')} ? 'form-control field-error' : 'form-control'"
+                   class="form-control">
+            <div class="field-error" th:if="${errors?.containsKey('password')}" th:text="${errors['password']}">에러</div>
         </div>
 
         <hr class="my-4">
