@@ -22,16 +22,19 @@
         <h2>게시물 작성하기</h2>
     </div>
 
-    <form action="addBoard.html" th:action method="post" th:object="${post}">
+    <form action="addBoard.html" th:action method="post" th:object="${boardUpdateDto}">
         <div>
             <label for="title">제목</label>
-            <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요" th:value="${post.title}">
+            <input type="text" id="title" name="title" class="form-control"
+                   placeholder="제목을 입력하세요" th:value="*{title}">
             <div class="field-error" th:errors="*{title}">제목을 입력해주세요.</div>
         </div>
 
         <div>
             <label for="content">내용</label>
-            <textarea style="height: 200px; overflow-y: scroll" id="content" name="content" class="form-control" placeholder="내용을 입력하세요" th:text="${post.content}"></textarea>
+            <textarea style="height: 200px; overflow-y: scroll"
+                      id="content" name="content" class="form-control"
+                      placeholder="내용을 입력하세요" th:text="*{content}"></textarea>
             <div class="field-error" th:errors="*{content}">내용을 입력해주세요.</div>
         </div>
 

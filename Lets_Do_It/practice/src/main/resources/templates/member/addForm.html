@@ -39,7 +39,7 @@
         <div>
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password"
-                   th:class="${errors?.containsKey('password')} ? 'form-control field-error' : 'form-control'"
+                   th:errorclass="field-error"
                    class="form-control">
             <div class="field-error" th:errors="*{password}">에러</div>
         </div>

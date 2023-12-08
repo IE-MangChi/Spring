@@ -8,6 +8,10 @@
         .container {
             max-width: 560px;
         }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -21,11 +25,16 @@
     <form action="items.html" th:action method="post">
         <div>
             <label for="title">제목</label>
-            <input type="text" id="title" name="title" class="form-control" value="제목" th:value="${board.title}">
+            <input type="text" id="title" name="title" class="form-control" value="제목"
+                   th:value="${boardUpdateDto.title} ? ${boardUpdateDto.title} : ${board.title}">
+            <div class="field-error" th:errors="*{boardUpdateDto.title}">제목을 입력해주세요.</div>
         </div>
         <div>
             <label for="content">내용</label>
-            <textarea style="height: 200px; overflow-y: scroll" id="content" name="content" class="form-control" th:text="${board.content}"></textarea>
+            <textarea style="height: 200px; overflow-y: scroll"
+                      id="content" name="content" class="form-control"
+                      th:text="${boardUpdateDto.content} ? ${boardUpdateDto.content} : ${board.content}"></textarea>
+            <div class="field-error" th:errors="*{boardUpdateDto.content}">내용을 입력해주세요.</div>
         </div>
         <hr class="my-4">
 
@@ -36,7 +45,7 @@
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='board.html'"
-                        th:onclick="|location.href='@{/boards/{boardId}(boardId=${board.id})}'|"
+                        th:onclick="|location.href='@{/boards/{boardId}(boardId=${board_id})}'|"
                         type="button">취소</button>
             </div>
         </div>

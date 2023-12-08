@@ -42,12 +42,12 @@ public class BoardController {
     }
 
     @GetMapping("/add")
-    public String addBoard(@ModelAttribute("post") BoardUpdateDto createParam) {
+    public String addBoard(BoardUpdateDto boardUpdateDto) {
         return "board/addBoard";
     }
 
     @PostMapping("/add")
-    public String createBoard(@Validated @ModelAttribute("post") BoardUpdateDto createParam,
+    public String createBoard(@Validated BoardUpdateDto boardUpdateDto,
                               BindingResult bindingResult,
                               HttpServletRequest request, Model model) {
 
@@ -57,30 +57,39 @@ public class BoardController {
         }
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("board", boardUpdateDto);
             return "board/addBoard";
         }
 
         Member loginMember = (Member)session.getAttribute("loginMember");
         Board board = new Board(
-                createParam.getTitle(),
-                createParam.getContent(),
+                boardUpdateDto.getTitle(),
+                boardUpdateDto.getContent(),
                 loginMember.getLoginId()
         );
         boardService.createBoard(board);
-        model.addAttribute("board", board);
         return "redirect:/boards";
     }
 
     @GetMapping("/{boardId}/edit")
-    public String editForm(@PathVariable Long boardId, Model model) {
+    public String editForm(@PathVariable Long boardId, Model model,
+                           BoardUpdateDto updating) {
         Board board = boardService.findBoardById(boardId).get();
+
         model.addAttribute("board", board);
         return "board/editBoard";
     }
 
     @PostMapping("/{boardId}/edit")
-    public String editBoard(@ModelAttribute BoardUpdateDto updateParam, @PathVariable Long boardId) {
-        boardService.updateBoard(boardId, updateParam);
+    public String editBoard(@Validated @ModelAttribute BoardUpdateDto updating,
+                            BindingResult bindingResult,
+                            @PathVariable Long boardId, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("board_id", boardId);
+            return "board/editBoard";
+        }
+
+        boardService.updateBoard(boardId, updating);
         return "redirect:/boards/{boardId}";
     }
 
