@@ -2,15 +2,12 @@ package study.practice.controller.member;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +31,7 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String saveMember(@Validated @ModelAttribute Member member,
+    public String saveMember(@Validated @ModelAttribute("member") Member member,
                              BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "member/addForm";

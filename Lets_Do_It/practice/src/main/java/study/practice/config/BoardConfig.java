@@ -36,7 +36,7 @@ public class BoardConfig {
     }
 
     @Bean
-    public TestDataForOnlyMemoryRepository testDataInit(BoardRepository repository) {
-        return new TestDataForOnlyMemoryRepository(repository);
+    public TestDataForOnlyMemoryRepository testDataInit(BoardRepository boardRepository, MemberRepository memberRepository) {
+        return new TestDataForOnlyMemoryRepository(boardRepository, memberRepository);
     }
 }

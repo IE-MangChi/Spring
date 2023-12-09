@@ -8,7 +8,6 @@ import study.practice.domain.board.Board;
 import study.practice.repository.board.BoardRepository;
 import study.practice.controller.board.BoardUpdateDto;
 
-@Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 

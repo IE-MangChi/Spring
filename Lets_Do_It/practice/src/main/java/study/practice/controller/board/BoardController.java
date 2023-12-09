@@ -34,7 +34,7 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}")
-    public String board(@PathVariable Long boardId, Model model) {
+    public String board(@PathVariable("boardId") Long boardId, Model model) {
         Board board = boardService.findBoardById(boardId).get();
         boardService.hitBoard(board);
         model.addAttribute("board", board);
@@ -72,7 +72,7 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}/edit")
-    public String editForm(@PathVariable Long boardId, Model model,
+    public String editForm(@PathVariable("boardId") Long boardId, Model model,
                            BoardUpdateDto updating) {
         Board board = boardService.findBoardById(boardId).get();
 
@@ -83,7 +83,7 @@ public class BoardController {
     @PostMapping("/{boardId}/edit")
     public String editBoard(@Validated @ModelAttribute BoardUpdateDto updating,
                             BindingResult bindingResult,
-                            @PathVariable Long boardId, Model model) {
+                            @PathVariable("boardId") Long boardId, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("board_id", boardId);
             return "board/editBoard";

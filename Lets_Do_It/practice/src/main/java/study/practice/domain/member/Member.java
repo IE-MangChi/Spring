@@ -2,7 +2,8 @@ package study.practice.domain.member;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.Getter;
+
+import java.beans.ConstructorProperties;
 
 @Data
 public class Member {
@@ -14,6 +15,8 @@ public class Member {
     private String name;
     @NotBlank(message = "비밀번호를 입력해주세요")
     private String password;
+
+    public Member() {}
 
     public Member(String loginId, String name, String password) {
         this.loginId = loginId;

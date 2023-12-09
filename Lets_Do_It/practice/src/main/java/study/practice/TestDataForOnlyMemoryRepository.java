@@ -2,6 +2,7 @@ package study.practice;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.event.EventListener;
 import study.practice.domain.board.Board;
 import study.practice.domain.member.Member;
 import study.practice.repository.board.BoardRepository;
