@@ -76,6 +76,7 @@ public class BoardController {
                            BoardUpdateDto updating) {
         Board board = boardService.findBoardById(boardId).get();
 
+        model.addAttribute("board_id", boardId);
         model.addAttribute("board", board);
         return "board/editBoard";
     }

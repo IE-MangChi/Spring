@@ -19,14 +19,18 @@
     <div class="py-5 text-center">
         <h2>로그인</h2>
     </div>
-    <form action="boards.html" th:action method="post">
+    <form action="boards.html" th:action method="post" th:object="${loginForm}">
         <div>
             <label for="loginId">로그인 ID</label>
-            <input type="text" id="loginId" name="loginId" class="form-control">
+            <input type="text" id="loginId" name="loginId"
+                   class="form-control" th:value="*{loginId}">
+            <div class="field-error" th:errors="*{loginId}">아이디를 입력해주세요.</div>
         </div>
         <div>
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" class="form-control">
+            <div class="field-error" th:errors="*{password}">에러</div>
+            <div class="field-error" th:text="${loginFail}"></div>
         </div>
         <hr class="my-4">
         <div class="row">

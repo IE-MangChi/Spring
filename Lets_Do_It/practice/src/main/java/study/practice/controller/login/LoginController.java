@@ -5,6 +5,9 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,16 +22,24 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(LoginForm loginForm) {
         return "login/loginForm";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("loginForm") LoginForm loginParam,
+    public String login(@Validated @ModelAttribute("loginForm") LoginForm loginParam,
+                        BindingResult bindingResult, Model model,
                         HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            return "login/loginForm";
+        }
+
         Member loginMember = loginService.login(loginParam);
 
+
         if (loginMember == null) {
+            model.addAttribute("loginFail", "로그인에 실패하였습니다.");
             return "login/loginForm";
         }
 
