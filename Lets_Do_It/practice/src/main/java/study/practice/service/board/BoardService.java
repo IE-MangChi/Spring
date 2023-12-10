@@ -8,7 +8,7 @@ import study.practice.controller.board.BoardUpdateDto;
 public interface BoardService {
 
     // 게시물 등록
-    Board createBoard(Board board);
+    void createBoard(Board board);
 
     // 게시물 조회
     List<Board> findAllBoard();

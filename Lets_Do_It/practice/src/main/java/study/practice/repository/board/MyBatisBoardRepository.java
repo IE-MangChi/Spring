@@ -8,15 +8,14 @@ import study.practice.domain.board.Board;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 @RequiredArgsConstructor
 public class MyBatisBoardRepository implements BoardRepository {
 
     private final BoardMapper boardMapper;
 
     @Override
-    public Board create(Board board) {
-        return boardMapper.create(board);
+    public void create(Board board) {
+        boardMapper.create(board);
     }
 
     @Override

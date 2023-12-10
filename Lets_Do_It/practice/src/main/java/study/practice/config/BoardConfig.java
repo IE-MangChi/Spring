@@ -8,7 +8,10 @@ import study.practice.repository.board.BoardMapper;
 import study.practice.repository.board.BoardRepository;
 import study.practice.repository.board.MemoryBoardRepository;
 import study.practice.repository.board.MyBatisBoardRepository;
+import study.practice.repository.member.MemberMapper;
 import study.practice.repository.member.MemberRepository;
+import study.practice.repository.member.MyBatisMemberRepository;
+import study.practice.service.board.BoardService;
 import study.practice.service.board.BoardServiceImpl;
 import study.practice.service.login.LoginService;
 import study.practice.service.member.MemberService;
@@ -18,18 +21,19 @@ import study.practice.service.member.MemberService;
 public class BoardConfig {
 
     private final BoardMapper boardMapper;
+    private final MemberMapper memberMapper;
 
     @Bean
-    public BoardRepository boardRepository() {
+    MyBatisBoardRepository boardRepository() {
         return new MyBatisBoardRepository(boardMapper);
     }
     @Bean
-    public MemberRepository memberRepository() {
-        return new MemberRepository();
+    MyBatisMemberRepository memberRepository() {
+        return new MyBatisMemberRepository(memberMapper);
     }
 
     @Bean
-    public BoardServiceImpl boardService() {
+    BoardService boardService() {
         return new BoardServiceImpl(boardRepository());
     }
     @Bean

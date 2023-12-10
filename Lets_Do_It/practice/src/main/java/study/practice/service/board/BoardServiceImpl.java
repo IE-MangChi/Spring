@@ -7,16 +7,17 @@ import org.springframework.stereotype.Service;
 import study.practice.domain.board.Board;
 import study.practice.repository.board.BoardRepository;
 import study.practice.controller.board.BoardUpdateDto;
+import study.practice.repository.board.MyBatisBoardRepository;
+import study.practice.repository.member.MyBatisMemberRepository;
 
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
-    private final BoardRepository repository;
+    private final MyBatisBoardRepository repository;
 
     @Override
-    public Board createBoard(Board board) {
+    public void createBoard(Board board) {
         repository.create(board);
-        return board;
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface BoardMapper {
 
     // 게시물 등록
-    Board create(Board board);
+    void create(Board board);
     // 게시물 수정
     void update(@Param("id") int id,
                 @Param("updateParam") BoardUpdateDto updateParam);

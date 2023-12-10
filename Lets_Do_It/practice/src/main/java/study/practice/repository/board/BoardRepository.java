@@ -9,7 +9,7 @@ import study.practice.domain.board.Board;
 @Repository
 public interface BoardRepository {
     // 게시물 등록
-    Board create(Board board);
+    void create(Board board);
     // 게시물 수정
     void update(int id, BoardUpdateDto updateParam);
     // 단건 게시물 조회

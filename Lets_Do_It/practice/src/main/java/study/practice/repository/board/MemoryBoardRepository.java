@@ -14,10 +14,9 @@ public class MemoryBoardRepository implements BoardRepository{
     private static int sequence = 0;
 
     @Override
-    public Board create(Board board) {
+    public void create(Board board) {
         board.setId(sequence++);
         store.put(board.getId(), board);
-        return board;
     }
 
     @Override

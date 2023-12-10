@@ -9,7 +9,7 @@
     <update id="update">
         update Board
         set title=#{updateParam.title},
-            content=#{updateParam.content},
+            content=#{updateParam.content}
         where id = #{id}
     </update>
     <select id="findById" resultType="study.practice.domain.board.Board">
@@ -35,7 +35,7 @@
     </delete>
     <update id="hitBoard">
         update Board
-        set hit=#{board.hit} + 1
+        set hit= hit + 1
         where id=#{id}
     </update>
 </mapper>

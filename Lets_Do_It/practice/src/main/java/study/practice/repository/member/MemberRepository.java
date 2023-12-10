@@ -9,8 +9,8 @@ import study.practice.domain.member.Member;
 
 public class MemberRepository {
 
-    private static final Map<Long, Member> store = new HashMap<>();
-    private static long sequence = 0L;
+    private static final Map<Integer, Member> store = new HashMap<>();
+    private static int sequence = 0;
 
     public Member save(Member member) {
         member.setId(sequence++);
@@ -18,7 +18,7 @@ public class MemberRepository {
         return member;
     }
 
-    public Member findById(Long id) {
+    public Member findById(int id) {
         return store.get(id);
     }
 

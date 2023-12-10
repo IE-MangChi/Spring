@@ -3,12 +3,10 @@ package study.practice.domain.member;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-import java.beans.ConstructorProperties;
-
 @Data
 public class Member {
 
-    private Long id;
+    private int id;
     @NotBlank(message = "아이디를 입력해주세요")
     private String loginId;
     @NotBlank(message = "이름을 입력해주세요")

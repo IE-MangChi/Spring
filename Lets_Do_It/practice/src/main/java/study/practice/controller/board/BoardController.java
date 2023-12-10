@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import study.practice.domain.board.Board;
 import study.practice.domain.member.Member;
+import study.practice.service.board.BoardService;
 import study.practice.service.board.BoardServiceImpl;
 
 @Slf4j
@@ -24,7 +25,7 @@ import study.practice.service.board.BoardServiceImpl;
 @RequiredArgsConstructor
 public class BoardController {
 
-    private final BoardServiceImpl boardService;
+    private final BoardService boardService;
 
     @GetMapping("")
     public String getAllBoards(Model model) {
@@ -89,7 +90,6 @@ public class BoardController {
             model.addAttribute("board_id", boardId);
             return "board/editBoard";
         }
-
         boardService.updateBoard(boardId, updating);
         return "redirect:/boards/{boardId}";
     }
