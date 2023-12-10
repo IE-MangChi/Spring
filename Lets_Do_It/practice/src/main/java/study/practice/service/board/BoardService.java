@@ -14,14 +14,14 @@ public interface BoardService {
     List<Board> findAllBoard();
 
     // 게시물 단건 조회
-    Optional<Board> findBoardById(Long id);
+    Optional<Board> findBoardById(int id);
 
     // 게시물 수정
-    void updateBoard(Long id, BoardUpdateDto updateParam);
+    void updateBoard(int id, BoardUpdateDto updateParam);
 
     // 게시물 삭제
-    void deleteBoardById(Long id);
+    void deleteBoardById(int id);
 
     // 조회수 로직
-    void hitBoard(Board board);
+    void hitBoard(int id);
 }

@@ -1,17 +1,21 @@
 package study.practice.repository.board;
 
-import java.util.List;
-import java.util.Optional;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import study.practice.controller.board.BoardUpdateDto;
 import study.practice.domain.board.Board;
 
-@Repository
-public interface BoardRepository {
+import java.util.List;
+import java.util.Optional;
+
+@Mapper
+public interface BoardMapper {
+
     // 게시물 등록
     Board create(Board board);
     // 게시물 수정
-    void update(int id, BoardUpdateDto updateParam);
+    void update(@Param("id") int id,
+                @Param("updateParam") BoardUpdateDto updateParam);
     // 단건 게시물 조회
     Optional<Board> findById(int id);
     // 다중 게시물 조회

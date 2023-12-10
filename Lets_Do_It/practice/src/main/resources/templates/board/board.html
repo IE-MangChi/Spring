@@ -30,6 +30,10 @@
         <input type="text" id="writer" name="writer" class="form-control" th:value="${board.writer}" readonly>
     </div>
     <div>
+        <label for="hit">조회수</label>
+        <input type="text" id="hit" name="hit" class="form-control" th:value="${board.hit}" readonly>
+    </div>
+    <div>
         <label for="content">내용</label>
         <textarea style="height: 200px; overflow-y: scroll" id="content" name="content" class="form-control"
                   th:text="${board.content}" readonly></textarea>

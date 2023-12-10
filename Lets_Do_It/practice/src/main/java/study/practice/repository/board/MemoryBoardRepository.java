@@ -10,8 +10,8 @@ import study.practice.domain.board.Board;
 
 public class MemoryBoardRepository implements BoardRepository{
 
-    private static final Map<Long, Board> store = new HashMap<>();
-    private static long sequence = 0L;
+    private static final Map<Integer, Board> store = new HashMap<>();
+    private static int sequence = 0;
 
     @Override
     public Board create(Board board) {
@@ -21,14 +21,14 @@ public class MemoryBoardRepository implements BoardRepository{
     }
 
     @Override
-    public void update(Long id, BoardUpdateDto updateParam) {
+    public void update(int id, BoardUpdateDto updateParam) {
         Board findBoard = store.get(id);
         findBoard.setTitle(updateParam.getTitle());
         findBoard.setContent(updateParam.getContent());
     }
 
     @Override
-    public Optional<Board> findById(Long id) {
+    public Optional<Board> findById(int id) {
         Board findBoard = store.get(id);
         return Optional.ofNullable(findBoard);
     }
@@ -39,12 +39,13 @@ public class MemoryBoardRepository implements BoardRepository{
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(int id) {
         store.remove(id);
     }
 
     @Override
-    public void hitBoard(Board board) {
-        board.setHit(board.getHit() + 1L);
+    public void hitBoard(int id) {
+        Board board = store.get(id);
+        board.setHit(board.getHit() + 1);
     }
 }

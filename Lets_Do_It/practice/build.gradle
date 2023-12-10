@@ -27,8 +27,8 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.2'
 	compileOnly 'org.projectlombok:lombok'
 
-	//H2 데이터베이스
-	runtimeOnly 'com.h2database:h2'
+	//MySql
+	implementation 'mysql:mysql-connector-java:8.0.33'
 	//MyBatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 

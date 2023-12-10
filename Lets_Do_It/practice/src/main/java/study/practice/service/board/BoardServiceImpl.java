@@ -25,22 +25,22 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public Optional<Board> findBoardById(Long id) {
+    public Optional<Board> findBoardById(int id) {
         return repository.findById(id);
     }
 
     @Override
-    public void updateBoard(Long id, BoardUpdateDto updateParam) {
+    public void updateBoard(int id, BoardUpdateDto updateParam) {
         repository.update(id, updateParam);
     }
 
     @Override
-    public void deleteBoardById(Long id) {
+    public void deleteBoardById(int id) {
         repository.delete(id);
     }
 
     @Override
-    public void hitBoard(Board board) {
-        repository.hitBoard(board);
+    public void hitBoard(int id) {
+        repository.hitBoard(id);
     }
 }
