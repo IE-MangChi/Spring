@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import study.practice.domain.board.Board;
 import study.practice.controller.board.BoardUpdateDto;
+import study.practice.domain.board.Page;
 
 public interface BoardService {
 
@@ -11,7 +12,10 @@ public interface BoardService {
     void createBoard(Board board);
 
     // 게시물 조회
-    List<Board> findAllBoard();
+    List<Board> findAllBoard(int offset, int boardSize);
+
+    // 게시물 수 조회
+    int count();
 
     // 게시물 단건 조회
     Optional<Board> findBoardById(int id);

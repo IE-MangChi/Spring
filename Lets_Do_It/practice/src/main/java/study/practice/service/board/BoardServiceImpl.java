@@ -5,6 +5,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import study.practice.domain.board.Board;
+import study.practice.domain.board.Page;
 import study.practice.repository.board.BoardRepository;
 import study.practice.controller.board.BoardUpdateDto;
 import study.practice.repository.board.MyBatisBoardRepository;
@@ -21,8 +22,13 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<Board> findAllBoard() {
-        return repository.findAll();
+    public List<Board> findAllBoard(int offset, int boardSize) {
+        return repository.findAll(offset, boardSize);
+    }
+
+    @Override
+    public int count() {
+        return repository.count();
     }
 
     @Override

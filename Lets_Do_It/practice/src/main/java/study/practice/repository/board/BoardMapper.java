@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import study.practice.controller.board.BoardUpdateDto;
 import study.practice.domain.board.Board;
+import study.practice.domain.board.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,10 @@ public interface BoardMapper {
     // 단건 게시물 조회
     Optional<Board> findById(int id);
     // 다중 게시물 조회
-    List<Board> findAll();
+    List<Board> findAll(@Param("offset") int offset,
+                        @Param("boardSize") int boardSize);
+    // 게시물 수 조회
+    int count();
     // 게시물 삭제
     void delete(int id);
     // 조회수 로직

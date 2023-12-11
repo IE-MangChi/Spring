@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 import study.practice.controller.board.BoardUpdateDto;
 import study.practice.domain.board.Board;
+import study.practice.domain.board.Page;
 
 @Repository
 public interface BoardRepository {
@@ -15,7 +16,9 @@ public interface BoardRepository {
     // 단건 게시물 조회
     Optional<Board> findById(int id);
     // 다중 게시물 조회
-    List<Board> findAll();
+    List<Board> findAll(int offset, int boardSize);
+    // 게시물 수 조회
+    int count();
     // 게시물 삭제
     void delete(int id);
     // 조회수 로직

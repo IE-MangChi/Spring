@@ -53,6 +53,32 @@
             </tbody>
         </table>
     </div>
+
+    <div class="col">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <!-- 이전 페이지 버튼 -->
+                <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+                    <a class="page-link" th:href="@{/boards(page=${currentPage - 1})}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                <!-- 페이지 번호 -->
+                <li class="page-item" th:each="pageNumber : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage == pageNumber} ? active">
+                    <a class="page-link" th:href="@{/boards(page=${pageNumber})}" th:text="${pageNumber}"></a>
+                </li>
+
+                <!-- 다음 페이지 버튼 -->
+                <li class="page-item" th:classappend="${currentPage == totalPages} ? disabled">
+                    <a class="page-link" th:href="@{/boards(page=${currentPage + 1})}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
     <hr class="my-4">
     <div class="row">
         <div class="col" th:if="${session['loginMember'] != null}">

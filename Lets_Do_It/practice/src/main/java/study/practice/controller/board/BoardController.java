@@ -9,12 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import study.practice.domain.board.Board;
+import study.practice.domain.board.Page;
 import study.practice.domain.member.Member;
 import study.practice.service.board.BoardService;
 import study.practice.service.board.BoardServiceImpl;
@@ -28,8 +25,11 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("")
-    public String getAllBoards(Model model) {
-        List<Board> boards = boardService.findAllBoard();
+    public String getAllBoards(@RequestParam(name = "pageNum", defaultValue = "1") int pageNum,
+            Model model) {
+        int count = boardService.count();
+        Page page = new Page(pageNum, count);
+        List<Board> boards = boardService.findAllBoard(page.getOffset(), page.getBoardSize());
         model.addAttribute("boards", boards);
         return "board/boards";
     }

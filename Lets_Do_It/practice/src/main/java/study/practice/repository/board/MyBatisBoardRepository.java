@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import study.practice.controller.board.BoardUpdateDto;
 import study.practice.domain.board.Board;
+import study.practice.domain.board.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +30,13 @@ public class MyBatisBoardRepository implements BoardRepository {
     }
 
     @Override
-    public List<Board> findAll() {
-        return boardMapper.findAll();
+    public List<Board> findAll(int offset, int boardSize) {
+        return boardMapper.findAll(offset, boardSize);
+    }
+
+    @Override
+    public int count() {
+        return boardMapper.count();
     }
 
     @Override

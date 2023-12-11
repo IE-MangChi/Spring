@@ -20,6 +20,9 @@
     <select id="findAll" resultType="study.practice.domain.board.Board">
         select id, title, content, writer, hit
         from Board
+        order by id desc
+        limit #{boardSize}, #{offset}
+
 <!--        <where>-->
 <!--            <if test="itemName != null and itemName != ''">-->
 <!--                and item_name like concat('%',#{itemName},'%')-->
@@ -28,6 +31,10 @@
 <!--                and price &lt;= #{maxPrice}-->
 <!--            </if>-->
 <!--        </where>-->
+    </select>
+    <select id="count" resultType="int">
+        select count(*)
+        from Board
     </select>
     <delete id="delete">
         delete from Board
