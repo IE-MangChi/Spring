@@ -13,7 +13,7 @@ public class Page {
 
     public Page(int pageNum, int count) {
         this.currentPage = pageNum;
-        this.boardSize = 10;
+        this.boardSize = 5;
         this.totalPage = (int) Math.ceil((double) count / this.boardSize);
     }
 

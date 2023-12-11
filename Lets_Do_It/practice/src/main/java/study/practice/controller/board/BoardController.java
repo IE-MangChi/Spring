@@ -31,6 +31,7 @@ public class BoardController {
         Page page = new Page(pageNum, count);
         List<Board> boards = boardService.findAllBoard(page.getOffset(), page.getBoardSize());
         model.addAttribute("boards", boards);
+        model.addAttribute("page", page);
         return "board/boards";
     }
 

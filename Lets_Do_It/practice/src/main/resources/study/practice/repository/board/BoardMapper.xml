@@ -20,10 +20,10 @@
     <select id="findAll" resultType="study.practice.domain.board.Board">
         select id, title, content, writer, hit
         from Board
-        order by id desc
-        limit #{boardSize}, #{offset}
+        order by id
+        limit #{offset}, #{boardSize}
 
-<!--        <where>-->
+        <!--        <where>-->
 <!--            <if test="itemName != null and itemName != ''">-->
 <!--                and item_name like concat('%',#{itemName},'%')-->
 <!--            </if>-->
