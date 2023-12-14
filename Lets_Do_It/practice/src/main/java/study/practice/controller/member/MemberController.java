@@ -50,9 +50,7 @@ public class MemberController {
     @GetMapping("/profile")
     public String memberProfile(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false);
-        if (session == null | session.getAttribute("loginMember") == null) {
-            return "redirect:/";
-        }
+
         Member loginMember = (Member) session.getAttribute("loginMember");
         MemberForm memberForm = new MemberForm(loginMember.getLoginId(), loginMember.getName());
         model.addAttribute("memberForm", memberForm);
