@@ -45,8 +45,8 @@
             <tbody id="tableBody">
             <!-- Thymeleaf each loop for JSON data -->
             <tr th:each="board : ${boards}">
-                <td><a href="board.html" th:href="@{/boards/{boardId}(boardId=${board.id})}" th:text="${board.id}"></a></td>
-                <td><a href="board.html" th:href="@{/boards/{boardId}(boardId=${board.id})}" th:text="${board.title}"></a></td>
+                <td><a href="board.html" th:href="@{/boards/{boardId}(boardId=${board.id}, pageNum=${page.currentPage})}"  th:text="${board.id}"></a></td>
+                <td><a href="board.html" th:href="@{/boards/{boardId}(boardId=${board.id}, pageNum=${page.currentPage})}"  th:text="${board.title}"></a></td>
                 <td th:text="${board.writer}"></td>
                 <td th:text="${board.hit}"></td>
             </tr>

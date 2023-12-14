@@ -36,10 +36,14 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}")
-    public String board(@PathVariable("boardId") int boardId, Model model) {
+    public String board(@PathVariable("boardId") int boardId,
+                        @RequestParam(name = "pageNum", defaultValue = "1") int pageNum,
+                        Model model) {
+        log.info("pageNum={}", pageNum);
         Board board = boardService.findBoardById(boardId).get();
         boardService.hitBoard(boardId);
         model.addAttribute("board", board);
+        model.addAttribute("pageNum", pageNum);
         return "board/board";
     }
 

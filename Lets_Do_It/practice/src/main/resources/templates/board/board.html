@@ -51,7 +51,7 @@
         <div class="col">
             <button class="w-100 btn btn-secondary btn-lg"
                     onclick="location.href='boards.html'"
-                    th:onclick="|location.href='@{/boards}'|"
+                    th:onclick="|location.href='@{/boards(pageNum=${pageNum})}'|"
                     type="button">목록으로</button>
         </div>
     </div>
