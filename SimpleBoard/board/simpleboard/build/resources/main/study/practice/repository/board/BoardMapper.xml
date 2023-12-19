@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study.practice.repository.board.BoardMapper">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        insert into Board (title, content, writer)
+        values (#{title}, #{content}, #{writer})
+    </insert>
+    <update id="update">
+        update Board
+        set title=#{updateParam.title},
+            content=#{updateParam.content}
+        where id = #{id}
+    </update>
+    <select id="findById" resultType="study.practice.domain.board.Board">
+        select id, title, content, writer, hit
+        from Board
+        where id = #{id}
+    </select>
+    <select id="findAll" resultType="study.practice.domain.board.Board">
+        select id, title, content, writer, hit
+        from Board
+        order by id
+        limit #{offset}, #{boardSize}
+
+        <!--        <where>-->
+<!--            <if test="itemName != null and itemName != ''">-->
+<!--                and item_name like concat('%',#{itemName},'%')-->
+<!--            </if>-->
+<!--            <if test="maxPrice != null">-->
+<!--                and price &lt;= #{maxPrice}-->
+<!--            </if>-->
+<!--        </where>-->
+    </select>
+    <select id="count" resultType="int">
+        select count(*)
+        from Board
+    </select>
+    <delete id="delete">
+        delete from Board
+        where id = #{id}
+    </delete>
+    <update id="hitBoard">
+        update Board
+        set hit= hit + 1
+        where id=#{id}
+    </update>
+</mapper>
