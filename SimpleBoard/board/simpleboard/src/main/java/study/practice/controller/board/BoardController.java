@@ -39,7 +39,6 @@ public class BoardController {
     public String board(@PathVariable("boardId") int boardId,
                         @RequestParam(name = "pageNum", defaultValue = "1") int pageNum,
                         Model model) {
-        log.info("pageNum={}", pageNum);
         Board board = boardService.findBoardById(boardId).get();
         boardService.hitBoard(boardId);
         model.addAttribute("board", board);

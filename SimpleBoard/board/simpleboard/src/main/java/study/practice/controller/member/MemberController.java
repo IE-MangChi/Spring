@@ -44,7 +44,7 @@ public class MemberController {
         }
 
         memberService.save(member);
-        return "redirect:/";
+        return "redirect:/boards";
     }
 
     @GetMapping("/profile")
